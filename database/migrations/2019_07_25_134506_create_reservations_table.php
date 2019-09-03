@@ -20,6 +20,9 @@ class CreateReservationsTable extends Migration
             $table->string('Telephone');
             $table->string('DateRecuperation');
             $table->string('DateRetour');
+            $table->string('LieuDepart');
+            $table->string('LieuRetour');
+            $table->boolean('2Condicteur');
             $table->string('etat')->default('en cours');
             $table->timestamps();
         });
