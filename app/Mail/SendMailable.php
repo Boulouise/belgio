@@ -21,13 +21,11 @@ class SendMailable extends Mailable
         $this->name = $name;
         $this->etat = $etat;
         $confirmation="nous vous prions de bien vouloir vous informer que votre réservation à été confirmé .
-        Nous vous remercions pour la confiance que vous nous témoignez.
-        Nous sommes impatients de vous accueillir et de vous assurer une visite des plus agréables.
-        ";
+                        Nous vous remercions pour la confiance que vous nous témoignez.
+                        Nous sommes impatients de vous accueillir et de vous assurer une visite des plus agréables.";
         $cours="Nous accusons réception de votre réservation et nous vous remercions de l'intérêt que vous portez à notre société.
-        Votre réservations sera traité dans le plus bref délais.
-        Nous vous prions d'agréer  nos salutation les meilleurs.
-        ";
+                Votre réservations sera traité dans le plus bref délais.
+                Nous vous prions d'agréer  nos salutation les meilleurs.";
         $annuler="Prière de noter que ce modèle est indisponible pour le moment ,je vous invite de penser à d'autre modeles.  ";
         if($etat=="confirmé")
         $this->message=$confirmation;
