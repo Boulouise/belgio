@@ -119,13 +119,13 @@
               <div class="row align-items-center">
               @if( $reservations->count()==0) 
                  <div class="col-12">
-                  <h3 class="mb-0">Aucune reservation n'est faite</h3>
+                  <h3 class="mb-0" style="margin-left: 28px;">Aucune reservation n'est faite</h3>
                  </div>
 
 
               @else
                 <div class="col">
-                  <h3 class="mb-0">La liste des réservations</h3>
+                  <h3 class="mb-0" style="margin-left: 28px;">La liste des réservations</h3>
                 </div>
                 <div class="col text-right ml-2">
                   <form action="{{ route('searchr') }}" method="post" role="search">

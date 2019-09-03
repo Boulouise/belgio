@@ -223,7 +223,7 @@
             <div class="card-header bg-white border-0">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0">Ajouter une voiture</h3>
+                  <h3 class="mb-0" style="margin-left: 28px;">Ajouter une voiture</h3>
                 </div>
                
               </div>
@@ -244,6 +244,17 @@
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Choisir une photo</label>
                         <input type="file"  class="form-control form-control-alternative"  name="img" require>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" >Catégorie</label>
+                        <select class="form-control form-control-alternative" name="categorie_id" >
+                              <option class="form-control form-control-alternative" value="">--- Select Categorie ---</option>
+                              @foreach ($categories as $categorie)
+                              <option class="form-control form-control-alternative" value="{{ $categorie->id }}"> {{ $categorie->NomCategorie }} </option>
+                             @endforeach
+                        </select>
                       </div>
                     </div>
                     <div class="col-lg-6">

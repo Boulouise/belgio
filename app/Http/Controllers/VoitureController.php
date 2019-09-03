@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Voiture;
+use App\Categorie;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Resources\Json\Resource;
 
 class VoitureController extends Controller
 {
@@ -14,6 +16,7 @@ class VoitureController extends Controller
         return view('reservation' , ['voitures'=>$listVoiture]);
     }
 
+    
     public function search(Request $request){
      
         $q=$request->searchvalue;
@@ -39,11 +42,13 @@ class VoitureController extends Controller
 
     public function edit($id){
         $voiture=Voiture::find($id);
+  
         return view('Form-reservation',['voiture'=>$voiture]);
     }
     public function editVoiture($id){
         $voiture=Voiture::find($id);
-        return view('editVoiture',['voiture'=>$voiture]);
+        $listCategorie=Categorie::all();
+        return view('editVoiture',['voiture'=>$voiture,'categories'=>$listCategorie]);
     }
     public function deleteVoiture($id){
         $voiture=Voiture::find($id);
@@ -71,6 +76,7 @@ class VoitureController extends Controller
     
      
         $voiture->img= '/storage/files/'.$filename;
+        $voiture->categorie_id=$request->categorie_id;
         $voiture->Carburant=$request->input('Carburant');
         $voiture->BoiteVitesse=$request->input('BoiteVitesse');
         $voiture->Puissance=$request->input('Puissance');
@@ -80,7 +86,9 @@ class VoitureController extends Controller
     }
    
     public function create(){
-        return view('AjoutVoiture');
+        $listCategorie=Categorie::all();
+        return view('AjoutVoiture' , ['categories'=>$listCategorie]);
+        
     }
 
     public function store(Request $request){
@@ -95,10 +103,11 @@ class VoitureController extends Controller
         $filename
       );
       
-    
+     
         $voiture->Model=$request->input('Model');
         $voiture->img= '/storage/files/'.$filename;
         $voiture->Carburant=$request->input('Carburant');
+        $voiture->categorie_id=$request->categorie_id;
         $voiture->BoiteVitesse=$request->input('BoiteVitesse');
         $voiture->Puissance=$request->input('Puissance');
         $voiture->Prix=$request->input('Prix');
@@ -107,6 +116,12 @@ class VoitureController extends Controller
 
          return redirect('/admin');
     }
-
     
+
+    public function VoitureParCategorie(Request $request){
+        $voitures = Voiture::where('categorie_id','=',$request->categorie);
+        // $encodedSku = json_encode($voitures);
+        $voitures = Voiture::where('categorie_id','LIKE','%'.$request->categorie.'%');
+        return response()->json( ['voitures' => $voitures]);
+    }
 }

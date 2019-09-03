@@ -12,5 +12,5 @@ class Voiture extends Model
 
    public function Categorie(){
     return $this->belongsTo('App\Categorie');
-}
+   }
 }

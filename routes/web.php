@@ -40,8 +40,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/admin', 'VoitureController@listeVoiture')->name('admin');
     Route::any('/searchr', 'ReservationController@search')->name('searchr');
     Route::any('/search', 'VoitureController@search')->name('search');
+    Route::any('/searchC', 'CategorieController@search')->name('searchC');
+    Route::any('/searchS', 'ServiceController@search')->name('searchS');
   
-    Route::put('saveVoiture', 'VoitureController@update');
+Route::put('saveVoiture', 'VoitureController@update');
 Route::post('saveVoiture', 'VoitureController@store');
 Route::get('/AjoutVoiture', 'VoitureController@create')->name('AjoutVoiture');
 Route::put('editVoiture/{id}', 'VoitureController@editVoiture')->name('editVoiture');
@@ -50,3 +52,18 @@ Route::get('/adminC', 'ReservationController@index')->name('adminC');
 Route::get('/send/email', 'HomeController@mail');
 });
 
+Route::get('/CategorieListe', 'CategorieController@index')->name('CategorieListe');
+Route::get('/AjoutCategorie', 'CategorieController@create')->name('AjoutCategorie');
+Route::post('saveCategorie', 'CategorieController@store');
+Route::put('editCategorie/{id}', 'CategorieController@editCategorie')->name('editCategorie');
+Route::put('updateCategorie', 'CategorieController@update');
+Route::delete('deleteCategorie/{id}', 'CategorieController@deleteCategorie')->name('deleteCategorie');
+
+
+Route::get('/ListeVoiturePCatecogie', 'VoitureController@VoitureParCategorie')->name('ListeVoiturePCatecogie');
+
+//service
+Route::get('/ListeRendezVous', 'ServiceController@index')->name('ListeRendezVous');
+Route::put('ListeRendezVous/{id}', 'ServiceController@update');
+    // Route::view('/adminC', 'adminC')->name('adminC');
+Route::delete('ListeRendezVous/{id}', 'ServiceController@destroy');

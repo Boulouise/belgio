@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>
-
+    BELGIO CAR
   </title>
   <!-- Favicon -->
   <link href="{{asset('img/LOGO2.png')}}" rel="icon" type="image/png">
@@ -30,6 +31,7 @@
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="./index.html">
+      
            <span class="text-dark"> Belgio Car</span>
       </a>
       <!-- User -->
@@ -103,26 +105,42 @@
        
         <!-- Navigation -->
         <ul class="navbar-nav">
-        <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link " href="{{ route('adminC') }}">
               <i class="ni ni-single-02 text-yellow"></i>Réservations
             </a>
           </li>
+          @if (auth()->id()==1) 
+          
           <li class="nav-item">
             <a class="nav-link " href="{{ route('admin') }}">
               <i class="ni ni-bullet-list-67 text-red"></i> Voitures
             </a>
           </li>
+          @endif
           <li class="nav-item">
-            <a class="nav-link" href="./examples/login.html">
-              <i class="ni ni-key-25 text-info"></i> Login
-            </a>
+            
+            <a class="nav-link" href="{{ route('logout') }}"
+                                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                <i class="ni ni-key-25 text-info"></i>         {{ __('Logout') }}
+                                    </a>
+                                   
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
           </li>
+          @if (auth()->id()==1) 
           <li class="nav-item">
-            <a class="nav-link" href="./examples/register.html">
-              <i class="ni ni-circle-08 text-pink"></i> Register
-            </a>
+           
+            <!-- @if (Route::has('register'))  @endif -->
+                               
+                                    <a class="nav-link" href="{{ route('register') }}">
+                                    <i class="ni ni-key-25 text-info"></i>{{ __('Register') }}</a>
+                              
+                          
           </li>
+          @endif
         </ul>
         <!-- Divider -->
         <hr class="my-3">
@@ -167,11 +185,11 @@
               <div class=" dropdown-header noti-title">
                 <h6 class="text-overflow m-0">Welcome!</h6>
               </div>
-              <a href="./examples/profile.html" class="dropdown-item">
+              <a href="{{ route('adminC') }}" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>My profile</span>
               </a>
-              <a href="./examples/profile.html" class="dropdown-item">
+              <a href="{{ route('admin') }}" class="dropdown-item">
                 <i class="ni ni-settings-gear-65"></i>
                 <span>Settings</span>
               </a>
@@ -218,102 +236,102 @@
         </div>
        
       </div>
-      <br><br><br>
-      <div class="col-xl-8 order-xl-1">
-          <div class="card bg-secondary shadow">
-            <div class="card-header bg-white border-0">
+      <div class="row mt-5">
+        <div class="col-xl-8 mb-5 mb-xl-0" style="max-width: max-content !important;">
+          <div class="card shadow">
+            <div class="card-header border-0">
               <div class="row align-items-center">
-                <div class="col-8">
-                  <h3 class="mb-0" style="margin-left: 28px;">Modifier {{$voiture->Model}}</h3>
+              @if( $services->count()==0) 
+                 <div class="col-12">
+                  <h3 class="mb-0" style="margin-left: 28px;">Aucun rendez_vous</h3>
+                 </div>
+                 
+
+              @else
+                <div class="col">
+                  <h3 class="mb-0" style="margin-left: 28px;">La liste des rendez_vous</h3>
                 </div>
-               
+                <div class="col text-right">
+                  <a href="{{ route('AjoutCategorie') }}" class="btn btn-sm btn-primary">Ajouter</a>
+                </div> 
+
+                <div class="col text-right ml-2">
+                  <form action="{{ route('searchS') }}" method="post" role="search">
+                    {{ csrf_field() }}
+           
+                    <div class="input-group">
+                      <input type="search" class="form-control"  name="searchvalue" aria-label="Text input with segmented dropdown button">
+                      <div class="input-group-append">
+                        <button  type="submit" class="btn btn-secondary">Chercher<i class="fa fa-search text-dark" aria-hidden="true"></i></button>
+                        
+                        
+                      </div>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
-            <div class="card-body">
-            <img src="{{ asset($voiture->img)}}" alt="..." class="img-thumbnail">
-           
-              <form action="{{url('saveVoiture')}}" method="post" enctype="multipart/form-data">
-              <input type="hidden" name="_method" value="PUT">
-                            {{ csrf_field() }}
-                            {{ method_field('PUT') }}
-              
-                <h6 class="heading-small text-muted mb-4">Voiture</h6>
-                <div class="pl-lg-4">
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" >Model</label>
-                        <input type="hidden"  class="form-control form-control-alternative" placeholder="Model" name="id" value="{{$voiture->id}}">
-                        <input type="text"  class="form-control form-control-alternative" placeholder="Model" name="Model" value="{{$voiture->Model}}">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" >Catégorie</label>
-                        <select class="form-control form-control-alternative" name="categorie_id" >      
-                              @foreach ($categories as $categorie)
-                              
-                              <option class="form-control form-control-alternative" value=" {{ $voiture->categorie_id }}" selected>{{ $categorie->NomCategorie }} </option>
-                              
-                             @endforeach
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-username">Choisir une photo</label>
-                        <input type="file"  class="form-control form-control-alternative"  name="img">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" >Carburant</label>
-                        <input type="text"  class="form-control form-control-alternative" placeholder="Carburant" name="Carburant" value="{{$voiture->Carburant}}">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" >Boite à vitesse</label>
-                        <input type="text"  class="form-control form-control-alternative" placeholder="Boite à vitesse" name="BoiteVitesse" value="{{$voiture->BoiteVitesse}}">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" >Puissance</label>
-                        <input type="text"  class="form-control form-control-alternative" placeholder="CV" name="Puissance" value="{{$voiture->Puissance}}">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" >Prix</label>
-                        <input type="text"  class="form-control form-control-alternative" placeholder="DH" name="Prix" value="{{$voiture->Prix}}">
-                      </div>
-                    </div>
-                  </div>
-
-                  <div >
-								<button class="btn btn-primary">Enregistrer</button>
-						  	</div>
-                </div>
-                
-              
-              </form>
+            <div class="table-responsive">
+              <!-- Projects table -->
+              <table class="table align-items-center table-flush" id="myTable">
+                <thead class="thead-light">
+                  <tr>
+                            <th>Identifiant</th>
+                            <th class="number">Service</th>
+                            <th class="number">Date </th>
+                            <th class="number">Heure </th>
+                            <th class="actions">Etat</th>
+                            <th class="actions">Action</th>
+                            <!-- <th style="width: 570px !important;" >Action</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                @foreach($services as $service)
+                            <tr>
+                                <td>{{$service->id}}</td>
+                                <td>{{$service->NomService}}</td>
+                                <td> {{$service->Date}}</td>
+                                <td> {{$service->Heure}}</td>
+                                <td>{{$service->etat}}</td>
+                                <td >
+                               
+                               <form action="{{ url('ListeRendezVous/'.$service->id) }}" method="POST" style="display: inline;">
+                               <input type="hidden" name="_method" value="PUT">
+                                 {{ csrf_field() }} 
+                                
+                                 <input type="hidden"  name="id" value="{{$service->id}}">
+                                
+                                 @if ($service->etat=="en cours")  <button type="submit" name="etat"  class="btn btn-success" value="confirmé" data-toggle="tooltip" title="Confirmer la réservation"><i class="mdi mdi-check"></i></button> @endif
+                               @if ($service->etat=="confirmé" || $service->etat=="en cours")   
+                                <button type="submit" name="etat"  class="btn btn-primary" value="annuler" data-toggle="tooltip" title="Annuler la réservation"><i class="mdi mdi-close"></i></button>
+                                 
+                              </form> 
+                              @endif
+                              <form action="{{ url('ListeRendezVous/'.$service->id) }}" method="POST" style="display: inline;">
+                              <input type="hidden"  name="id" value="{{$service->id}}">
+                              {{ method_field('DELETE') }}  {{ csrf_field() }}
+                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Etes vous sure?')" data-toggle="tooltip" title="Supprimer"><i class="mdi mdi-delete"></i></button>
+                               </form>
+                           </td>
+                        @endforeach
+                </tbody>
+              </table>@endif
             </div>
           </div>
+          <div class="page-pagi">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination"> {{ $services->onEachSide(1)->links() }}
+                              
+                            </ul>
+                        </nav>
+                    </div>
         </div>
-      <!-- Footer -->
-      <footer class="footer">
-        <div class="row align-items-center justify-content-xl-between">
-          <div class="col-xl-6">
-            <div class="copyright text-center text-xl-left text-muted">
-              &copy; 2018 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Yan Soft</a>
-            </div>
-          </div>
-          
-        </div>
-      </footer>
-    </div>
+     
+      </div>
+      </div>
   </div>
+     
+  
   <!--   Core   -->
   <script src="{{ asset('js/plugins/jquery/dist/jquery.min.js')}}"></script>
   <script src="{{ asset('js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
@@ -341,6 +359,11 @@
     $(document).ready( function () {
     $('#myTable').DataTable();
 } );</script>
+ <script>
+ $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 </body>
 
 </html>

@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>
-
+    Argon Dashboard - Free Dashboard for Bootstrap 4 by Creative Tim
   </title>
   <!-- Favicon -->
   <link href="{{asset('img/LOGO2.png')}}" rel="icon" type="image/png">
@@ -30,7 +30,7 @@
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="./index.html">
-           <span class="text-dark"> Belgio Car</span>
+         <span class="text-dark"> Belgio Car</span>
       </a>
       <!-- User -->
       <ul class="nav align-items-center d-md-none">
@@ -49,8 +49,7 @@
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg
-">
+                <img alt="Image placeholder" src="./assets/img/theme/team-1-800x800.jpg">
               </span>
             </div>
           </a>
@@ -111,6 +110,11 @@
           <li class="nav-item">
             <a class="nav-link " href="{{ route('admin') }}">
               <i class="ni ni-bullet-list-67 text-red"></i> Voitures
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{{ route('admin') }}">
+              <i class="ni ni-bullet-list-67 text-red"></i> Categories
             </a>
           </li>
           <li class="nav-item">
@@ -224,69 +228,24 @@
             <div class="card-header bg-white border-0">
               <div class="row align-items-center">
                 <div class="col-8">
-                  <h3 class="mb-0" style="margin-left: 28px;">Modifier {{$voiture->Model}}</h3>
+                  <h3 class="mb-0" style="margin-left: 28px;">Modifer {{$categorie->NomCategorie}}</h3>
                 </div>
                
               </div>
             </div>
             <div class="card-body">
-            <img src="{{ asset($voiture->img)}}" alt="..." class="img-thumbnail">
-           
-              <form action="{{url('saveVoiture')}}" method="post" enctype="multipart/form-data">
+              <form action="{{url('updateCategorie')}}" method="post" enctype="multipart/form-data" >
               <input type="hidden" name="_method" value="PUT">
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
-              
-                <h6 class="heading-small text-muted mb-4">Voiture</h6>
+                <h6 class="heading-small text-muted mb-4">Categorie</h6>
                 <div class="pl-lg-4">
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" >Model</label>
-                        <input type="hidden"  class="form-control form-control-alternative" placeholder="Model" name="id" value="{{$voiture->id}}">
-                        <input type="text"  class="form-control form-control-alternative" placeholder="Model" name="Model" value="{{$voiture->Model}}">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" >Catégorie</label>
-                        <select class="form-control form-control-alternative" name="categorie_id" >      
-                              @foreach ($categories as $categorie)
-                              
-                              <option class="form-control form-control-alternative" value=" {{ $voiture->categorie_id }}" selected>{{ $categorie->NomCategorie }} </option>
-                              
-                             @endforeach
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" for="input-username">Choisir une photo</label>
-                        <input type="file"  class="form-control form-control-alternative"  name="img">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" >Carburant</label>
-                        <input type="text"  class="form-control form-control-alternative" placeholder="Carburant" name="Carburant" value="{{$voiture->Carburant}}">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" >Boite à vitesse</label>
-                        <input type="text"  class="form-control form-control-alternative" placeholder="Boite à vitesse" name="BoiteVitesse" value="{{$voiture->BoiteVitesse}}">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" >Puissance</label>
-                        <input type="text"  class="form-control form-control-alternative" placeholder="CV" name="Puissance" value="{{$voiture->Puissance}}">
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="form-group">
-                        <label class="form-control-label" >Prix</label>
-                        <input type="text"  class="form-control form-control-alternative" placeholder="DH" name="Prix" value="{{$voiture->Prix}}">
+                        <label class="form-control-label" >Libellé</label>
+                        <input type="hidden"  class="form-control form-control-alternative" placeholder="Model" name="id" value="{{$categorie->id}}">
+                        <input type="text"  class="form-control form-control-alternative" placeholder="Categorie" name="NomCategorie" value="{{$categorie->NomCategorie}}">
                       </div>
                     </div>
                   </div>
@@ -309,7 +268,7 @@
               &copy; 2018 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Yan Soft</a>
             </div>
           </div>
-          
+        
         </div>
       </footer>
     </div>

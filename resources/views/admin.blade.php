@@ -117,6 +117,16 @@
               <i class="ni ni-bullet-list-67 text-red"></i> Voitures
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{{ route('CategorieListe') }}">
+              <i class="ni ni-bullet-list-67 text-red"></i> Catégories
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{{ route('ListeRendezVous') }}">
+              <i class="ni ni-bullet-list-67 text-red"></i>Rendez_Vous
+            </a>
+          </li>
           @endif
           <li class="nav-item">
             
@@ -243,7 +253,7 @@
               <div class="row align-items-center">
               @if( $voitures->count()==0) 
                  <div class="col-12">
-                  <h3 class="mb-0">Aucune voiture</h3>
+                  <h3 class="mb-0" style="margin-left: 28px;">Aucune voiture</h3>
                  </div>
                  <div class="col text-right">
                   <a href="{{ route('AjoutVoiture') }}" class="btn btn-sm btn-primary">Ajouter</a>
@@ -251,7 +261,7 @@
 
               @else
                 <div class="col">
-                  <h3 class="mb-0">La liste des voitures</h3>
+                  <h3 class="mb-0" style="margin-left: 28px;">La liste des voitures</h3>
                 </div>
                 <div class="col text-right">
                   <a href="{{ route('AjoutVoiture') }}" class="btn btn-sm btn-primary">Ajouter</a>
@@ -280,6 +290,7 @@
                   <tr>
                             <th>Matricule</th>
                             <th class="number">Model</th>
+                            <th class="actions">Catégorie</th>
                             <th class="actions">Carburant</th>
                             <th class="actions">Boite à vitesse</th>
                             <th class="actions">Puissance</th>
@@ -293,6 +304,7 @@
                             <tr>
                                 <td>{{$voiture->id}}</td>
                                 <td>{{$voiture->Model}}</td>
+                                <td>{{$voiture->Categorie->NomCategorie}}</td>
                                 <td>{{$voiture->Carburant}}</td>
                                 <td>{{$voiture->BoiteVitesse}}</td>
                                 <td>{{$voiture->Puissance}}</td>

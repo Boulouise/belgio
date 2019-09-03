@@ -16,9 +16,11 @@ class CreateServicesTable extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->increments('id');
             $table->string('NomService');
-            $table->string('TypeLavage');
+            $table->string('TypeLavage')->nullable();
             $table->string('Date');
             $table->string('Heure');
+            $table->string('Vehicule');
+            $table->string('etat')->default('en cours');
             $table->timestamps();
         });
     }
