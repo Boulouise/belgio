@@ -246,7 +246,7 @@
         </div>
        
       </div>
-      <div class="row mt-5" style="margin-left:15% !important">
+      <div class="row mt-5" style="margin-left:10% !important">
         <div width="80%" class="col-xl-8 mb-5 mb-xl-0" style="max-width: max-content !important;">
           <div class="card shadow">
             <div class="card-header border-0">
