@@ -109,6 +109,16 @@
                         <li class="nav-item {{ Request::is('/') ? 'active' : '' }} "><a href="{{ url('/') }}" class="nav-link">Accueil</a></li>
                         <li class="nav-item {{ Request::is('entreprise*') ? 'active' : '' }} "><a href="{{ route('entreprise') }}" class="nav-link">Entreprise</a></li>
                         <li class="nav-item {{ Request::is('service*') ? 'active' : '' }} "><a href="{{ route('service') }}" class="nav-link">Services</a></li>
+                        <li class="nav-item {{ Request::is('service*') ? 'active' : '' }} " id="smenu1">
+                             <a href="" class="nav-link"> Rendez-Vous</a>
+                           <ul style="color:black">
+                              <li class="nav-item " style="color:black" id="ssmenu1"><a href="{{ route('PrendreRendezVous',['service'=>'lavage']) }}" class="nav-link">Lavage</a>
+                               
+                              </li>
+                              <li class="nav-item"><a href="{{ route('PrendreRendezVous',['service'=>'mecanique']) }}" class="nav-link">Mécanique</a></li>
+                              <li class="nav-item"><a href="{{ route('PrendreRendezVous',['service'=>'vidange']) }}" class="nav-link">Vidange</a></li>
+                           </ul>
+                        </li>
                         <li class="nav-item {{ Request::is('reservation*') ? 'active' : '' }} "><a href="{{ route('reservation') }}" class="nav-link">Réservation</a></li>
                         @if (auth()->id()==1) 
                     <li class="nav-item">
@@ -289,5 +299,49 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     $(document).ready( function () {
     $('#myTable').DataTable();
 } );</script>
+
+<script type="text/javascript">
+ 
+ <!--
+ 
+ window.onload=montre;
+ 
+ window.onload=montreSous;
+ 
+ function montre(id) {
+ 
+ var d = document.getElementById(id);
+ 
+  for (var i = 1; i<=10; i++) {
+ 
+  	if (document.getElementById('smen​u'+i)) {document.getElementById('smen​u'+i).style.display='none';}
+ 
+  }
+ 
+ if (d) {d.style.display='block';}
+ 
+ }
+ 
+ 
+ 
+ 
+ 
+ function montreSous(id) {
+ 
+ var d = document.getElementById(id);
+ 
+  for (var i = 1; i<=10; i++) {
+ 
+  	if (document.getElementById('ssme​nu'+i)) {document.getElementById('ssme​nu'+i).style.display='none';}
+ 
+  }
+ 
+ if (d) {d.style.display='block';}
+ 
+ }
+ 
+ //-->
+ 
+ </script>
 </body>
 </html>

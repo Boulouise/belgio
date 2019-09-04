@@ -67,3 +67,5 @@ Route::get('/ListeRendezVous', 'ServiceController@index')->name('ListeRendezVous
 Route::put('ListeRendezVous/{id}', 'ServiceController@update');
     // Route::view('/adminC', 'adminC')->name('adminC');
 Route::delete('ListeRendezVous/{id}', 'ServiceController@destroy');
+Route::get('/PrendreRendezVous', 'ServiceController@create')->name('PrendreRendezVous');
+Route::post('enregistrer', 'ServiceController@store');

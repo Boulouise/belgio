@@ -110,6 +110,16 @@
               <i class="ni ni-single-02 text-yellow"></i>Réservations
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{{ route('CategorieListe') }}">
+              <i class="ni ni-bullet-list-67 text-red"></i> Catégories
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{{ route('ListeRendezVous') }}">
+              <i class="ni ni-bullet-list-67 text-red"></i>Rendez_Vous
+            </a>
+          </li>
           @if (auth()->id()==1) 
           
           <li class="nav-item">
@@ -236,8 +246,8 @@
         </div>
        
       </div>
-      <div class="row mt-5">
-        <div class="col-xl-8 mb-5 mb-xl-0" style="max-width: max-content !important;">
+      <div class="row mt-5" style="margin-left:15% !important">
+        <div width="80%" class="col-xl-8 mb-5 mb-xl-0" style="max-width: max-content !important;">
           <div class="card shadow">
             <div class="card-header border-0">
               <div class="row align-items-center">
@@ -283,6 +293,7 @@
                             <th class="number">Nbr_Voiture
                             </th>
                             <th class="actions">Action</th>
+                            
                             <!-- <th style="width: 570px !important;" >Action</th> -->
                   </tr>
                 </thead>

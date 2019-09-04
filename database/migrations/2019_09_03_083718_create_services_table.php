@@ -17,6 +17,9 @@ class CreateServicesTable extends Migration
             $table->increments('id');
             $table->string('NomService');
             $table->string('TypeLavage')->nullable();
+            $table->string('NomClient');
+            $table->string('emailClient');
+            $table->string('Telephone');
             $table->string('Date');
             $table->string('Heure');
             $table->string('Vehicule');

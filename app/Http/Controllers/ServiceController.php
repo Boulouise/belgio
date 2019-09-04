@@ -7,6 +7,7 @@ use App\Service;
 
 class ServiceController extends Controller
 {
+    
     public function index(){
 
         $listService = Service::paginate(10);
@@ -14,6 +15,28 @@ class ServiceController extends Controller
         // dd(empty($listReservation) && $listReservation->count());
         return view('ListeRendezVous' , ['services'=>$listService]);
 
+    }
+
+    public function create(Request $request){
+        $q=$request->service;
+        return view('PrendreRendezVous', ['service'=>$q]);
+    }
+    public function store(Request $request){
+       
+        
+        $RendezVous=new Service();
+        $RendezVous->NomClient=$request->input('nom');
+        $RendezVous->emailClient=$request->input('email');
+        $RendezVous->Telephone=$request->input('tel');
+        $RendezVous->NomService=$request->input('nomService');
+        $RendezVous->Date=$request->input('date');
+        $RendezVous->Heure=$request->input('Heure');
+        $RendezVous->Vehicule=$request->input('marque');
+        $RendezVous->TypeLavage=$request->input('type');
+        $RendezVous->save();
+       
+           
+         return redirect('/') ;
     }
 
     //permet de supprimer une rendez_vous
