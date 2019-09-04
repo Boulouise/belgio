@@ -57,17 +57,30 @@
         </div>
        
         <!-- Navigation -->
-        <ul class="navbar-nav">
-        <li class="nav-item">
+         <ul class="navbar-nav">
+          <li class="nav-item">
             <a class="nav-link " href="{{ route('adminC') }}">
               <i class="ni ni-single-02 text-yellow"></i>Réservations
             </a>
           </li>
+          @if (auth()->id()==1) 
+          
           <li class="nav-item">
             <a class="nav-link " href="{{ route('admin') }}">
               <i class="ni ni-bullet-list-67 text-red"></i> Voitures
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{{ route('CategorieListe') }}">
+              <i class="ni ni-bullet-list-67 text-red"></i> Catégories
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="{{ route('ListeRendezVous') }}">
+              <i class="ni ni-bullet-list-67 text-red"></i>Rendez_Vous
+            </a>
+          </li>
+          @endif
           <li class="nav-item">
             
             <a class="nav-link" href="{{ route('logout') }}"
@@ -80,6 +93,7 @@
                                         @csrf
                                     </form>
           </li>
+          @if (auth()->id()==1) 
           <li class="nav-item">
            
             <!-- @if (Route::has('register'))  @endif -->
@@ -89,6 +103,7 @@
                               
                           
           </li>
+          @endif
         </ul>
         <!-- Divider -->
         <hr class="my-3">

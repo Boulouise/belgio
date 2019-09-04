@@ -68,13 +68,13 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<span class="form-label">Date de récupération</span>
-										<input class="form-control datepicker1" autocomplete="off" type="text"  name="debut"  id="debut" value=""  required />
+									<input class="form-control datepicker1" autocomplete="off" type="text"  name="debut"  id="debut" value="{{$data['date_d']}}"  required />
 									 </div>
 								</div>	
 								<div class="col-sm-6">
 									<div class="form-group"> 
 										<span class="form-label">Date de retour</span>
-										<input class="form-control datepicker1" autocomplete="off" type="text"  name="fin"  id="fin"   value=""  required/>
+										<input class="form-control datepicker1" autocomplete="off" type="text"  name="fin"  id="fin"    value="{{$data['date_r']}}"   required/>
 										</div>
 										
 								</div>
@@ -106,7 +106,7 @@
 								</div>
 					
 							<div class="form-btn">
-								<button class="submit-btn" id="sub" >Reserver</button>
+								<button class="submit-btn" id="sub" >Confirmé</button>
 							</div>
 						</form>
 					</div>
