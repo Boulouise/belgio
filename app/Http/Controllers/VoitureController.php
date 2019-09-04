@@ -42,13 +42,14 @@ class VoitureController extends Controller
 
     public function edit($id){
         $voiture=Voiture::find($id);
+        $data=session('data');
   
-        return view('Form-reservation',['voiture'=>$voiture]);
+        return view('Form-reservation',['voiture'=>$voiture,'data'=>$data]);
     }
     public function editVoiture($id){
         $voiture=Voiture::find($id);
         $listCategorie=Categorie::all();
-        return view('editVoiture',['voiture'=>$voiture,'categories'=>$listCategorie]);
+        return view('EditVoiture',['voiture'=>$voiture,'categories'=>$listCategorie]);
     }
     public function deleteVoiture($id){
         $voiture=Voiture::find($id);
@@ -118,10 +119,41 @@ class VoitureController extends Controller
     }
     
 
-    public function VoitureParCategorie(Request $request){
-        $voitures = Voiture::where('categorie_id','=',$request->categorie);
+    public function VoitureParCategorieId(Request $request){
+        
+        $voitures = Categorie ::with('Voitures')->find($request->categorie)->Voitures;
         // $encodedSku = json_encode($voitures);
-        $voitures = Voiture::where('categorie_id','LIKE','%'.$request->categorie.'%');
+       
         return response()->json( ['voitures' => $voitures]);
+    }
+    public function VoitureParCategorieName(Request $request){
+        //$voitures = Voiture::where('categorweie_id.name','=',$request->categorie);
+        // $encodedSku = json_encode($voitures);
+       // $voitures = Categorie ::where('NomCategorie','LIKE','%'.$request->categorie.'%')->Voitures;
+       $categories= Categorie ::all();
+       if(!empty($request->categorie)){
+        $voitures = Categorie ::with('Voitures')->find($request->categorie)->Voitures;
+        return view('layouts.welc',['voitures'=>$voitures,'categories'=>$categories]);
+       }
+        $voitures = Categorie ::with('Voitures')->find(1)->Voitures;
+      
+        return view('layouts.welc',['voitures'=>$voitures,'categories'=>$categories]);
+    }
+    public function chosee_a_car(Request $request){
+        //$voitures = Voiture::where('categorweie_id.name','=',$request->categorie);
+        // $encodedSku = json_encode($voitures);
+       // $voitures = Categorie ::where('NomCategorie','LIKE','%'.$request->categorie.'%')->Voitures;
+      // dd($request->all());
+
+       //$voiture=Voiture::find($id);
+       session(['data' => $request->all()]);
+       $categories= Categorie ::all();
+       if(!empty($request->categorie)){
+        $voitures = Categorie ::with('Voitures')->find($request->categorie)->Voitures;
+        return view('layouts.choose_a_car',['voitures'=>$voitures,'categories'=>$categories]);
+       }
+        $voitures =Voiture::all();
+      
+        return view('layouts.choose_a_car',['voitures'=>$voitures,'categories'=>$categories]);
     }
 }

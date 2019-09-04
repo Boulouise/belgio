@@ -1,5 +1,5 @@
 <?php
-
+use App\Categorie;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/', 'VoitureController@VoitureParCategorieName')->name('hm');
+Route::get('/welc', 'VoitureController@VoitureParCategorieName')->name('welc');
+Route::get('chosee_a_car', 'VoitureController@chosee_a_car')->name('chosee_a_car');
 Route::view('/testEmail', 'testEmail')->name('testEmail');
 Route::view('/entreprise', 'entreprise')->name('entreprise');
 Route::view('/service', 'service')->name('service');
@@ -60,7 +63,8 @@ Route::put('updateCategorie', 'CategorieController@update');
 Route::delete('deleteCategorie/{id}', 'CategorieController@deleteCategorie')->name('deleteCategorie');
 
 
-Route::get('/ListeVoiturePCatecogie', 'VoitureController@VoitureParCategorie')->name('ListeVoiturePCatecogie');
+Route::get('/ListeVoitureParCatecogienName', 'VoitureController@VoitureParCategorieName')->name('ListeVoiturePCatecogie');
+Route::get('/ListeVoitureParCatecogieId', 'VoitureController@VoitureParCategorieId')->name('ListeVoiturePCatecogie');
 
 //service
 Route::get('/ListeRendezVous', 'ServiceController@index')->name('ListeRendezVous');

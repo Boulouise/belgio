@@ -85,7 +85,7 @@
                 filter: filterValue
             });
 
-            return false;
+          
         }); // Choose Popular Car Isotope End
 
 
